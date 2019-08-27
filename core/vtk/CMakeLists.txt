@@ -22,6 +22,7 @@ if(DEFINED VTK_USE_FILE)
     include(${VTK_USE_FILE})
 endif()
 
+list(FILTER VTK_LIBRARIES EXCLUDE REGEX ".*libpython.*")
 include_directories(${VTK_INCLUDE_DIRS})
 
 set(VTKWRAPPER_LIB_LIST "")
@@ -127,6 +128,7 @@ if (TTK_BUILD_VTK_PYTHON_MODULE)
   add_library(${module}Python MODULE ${module}PythonInit.cxx)
   set_target_properties(${module}Python PROPERTIES PREFIX "")
   target_include_directories(${module}Python PUBLIC ${include_dirs})
+  set_target_properties(${module}Python PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
 
   include(vtkWrapPython)
   vtk_wrap_python3(${module}Python ${module}Python_SOURCES "${headers}")
@@ -137,8 +139,8 @@ if (TTK_BUILD_VTK_PYTHON_MODULE)
   target_link_libraries(${module}PythonD ${VTKWRAPPER_LIB_LIST})
   target_link_libraries(${module}PythonD
     ${VTK_LIBRARIES}
-    vtkWrappingPythonCore
-    ${VTK_PYTHON_LIBRARIES})
+    vtkWrappingPythonCore)
+  set_target_properties(${module}PythonD PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
 
   # link against VTK PythonD modules
   set(_pythond_libs)

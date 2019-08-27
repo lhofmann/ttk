@@ -23,6 +23,7 @@ function(ttk_add_vtk_library library)
 
   # Build the VTK Wrapper
   add_library(${library} SHARED ${ARG_SOURCES})
+  set_target_properties(${library} PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
   target_link_libraries(${library} PUBLIC ${VTK_LIBRARIES} ${ARG_LINK})
   # add HEADERS paramter to target properties
   set_target_properties(${library} PROPERTIES TTK_HEADERS "${ARG_HEADERS}")
