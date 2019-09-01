@@ -39,7 +39,7 @@ function(ttk_add_vtk_library library)
 
   install(TARGETS ${library}
     EXPORT TTKVTKTargets
-    RUNTIME DESTINATION bin/ttk
+    RUNTIME DESTINATION bin
     ARCHIVE DESTINATION lib/ttk
     LIBRARY DESTINATION lib/ttk)
 
