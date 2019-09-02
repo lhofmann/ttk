@@ -429,8 +429,8 @@ void MergeTree::parallelUpdateSegmentation(const bool ct) {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for
 #endif
-    for(idSuperArc sa = 0; sa < nbArc; sa++) {
-      SuperArc *superArc = getSuperArc(sa);
+    for(long long int sa = 0; static_cast<idSuperArc>(sa) < nbArc; sa++) {
+      SuperArc *superArc = getSuperArc(static_cast<idSuperArc>(sa));
       if(!superArc->isVisible())
         continue;
 
@@ -444,15 +444,15 @@ void MergeTree::parallelUpdateSegmentation(const bool ct) {
       sort(segmentation, segmentation + segmSize, compH);
       for(SimplexId i = 0; i < segmSize; i++) {
         const SimplexId &vert = segmentation[i].first;
-        updateCorrespondingArc(vert, sa);
+        updateCorrespondingArc(vert, static_cast<idSuperArc>(sa));
       }
     }
   } else {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for
 #endif
-    for(idSuperArc sa = 0; sa < nbArc; sa++) {
-      SuperArc *superArc = getSuperArc(sa);
+    for(long long int sa = 0; static_cast<idSuperArc>(sa) < nbArc; sa++) {
+      SuperArc *superArc = getSuperArc(static_cast<idSuperArc>(sa));
       if(!superArc->isVisible())
         continue;
 
@@ -467,7 +467,7 @@ void MergeTree::parallelUpdateSegmentation(const bool ct) {
       for(SimplexId i = 0; i < segmSize; i++) {
         const SimplexId &vert = segmentation[i].first;
         if(!segmentation[i].second) {
-          updateCorrespondingArc(vert, sa);
+          updateCorrespondingArc(vert, static_cast<idSuperArc>(sa));
         }
       }
     }
@@ -488,9 +488,9 @@ void MergeTree::parallelInitNodeValence(const int nbThreadValence) {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(nbThreadValence)
 #endif
-  for(idNode n = 0; n < nbNodes; n++) {
+  for(long int n = 0; static_cast<idNode>(n) < nbNodes; n++) {
     short downVal = 0, upVal = 0;
-    Node *node = getNode(n);
+    Node *node = getNode(static_cast<idNode>(n));
 
     const auto nbDown = node->getNumberOfDownSuperArcs();
     for(idSuperArc i = 0; i < nbDown; i++) {
