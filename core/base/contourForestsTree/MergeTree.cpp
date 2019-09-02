@@ -429,7 +429,7 @@ void MergeTree::parallelUpdateSegmentation(const bool ct) {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for
 #endif
-    for(long long int sa = 0; static_cast<idSuperArc>(sa) < nbArc; sa++) {
+    for(long long int sa = 0; sa < nbArc; sa++) {
       SuperArc *superArc = getSuperArc(static_cast<idSuperArc>(sa));
       if(!superArc->isVisible())
         continue;
@@ -451,7 +451,7 @@ void MergeTree::parallelUpdateSegmentation(const bool ct) {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for
 #endif
-    for(long long int sa = 0; static_cast<idSuperArc>(sa) < nbArc; sa++) {
+    for(long long int sa = 0; sa < nbArc; sa++) {
       SuperArc *superArc = getSuperArc(static_cast<idSuperArc>(sa));
       if(!superArc->isVisible())
         continue;
@@ -488,7 +488,7 @@ void MergeTree::parallelInitNodeValence(const int nbThreadValence) {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(nbThreadValence)
 #endif
-  for(long int n = 0; static_cast<idNode>(n) < nbNodes; n++) {
+  for(long int n = 0; n < nbNodes; n++) {
     short downVal = 0, upVal = 0;
     Node *node = getNode(static_cast<idNode>(n));
 

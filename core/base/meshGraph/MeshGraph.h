@@ -209,7 +209,7 @@ int ttk::MeshGraph::execute(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputPoints; i++) {
+    for(long int i = 0; i < nInputPoints; i++) {
       float data[4];
       getInputPointData(i, data);
 
@@ -274,7 +274,7 @@ int ttk::MeshGraph::execute(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t temp = i * 3 + 1;
       size_t aInputIndex = (size_t)inputTopology[temp++];
       size_t bInputIndex = (size_t)inputTopology[temp];
@@ -329,7 +329,7 @@ int ttk::MeshGraph::execute(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t temp = i * 3 + 1;
       topoType aInputIndex = inputTopology[temp++];
       topoType bInputIndex = inputTopology[temp];
@@ -456,7 +456,7 @@ int ttk::MeshGraph::execute2(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputPoints; i++) {
+    for(long int i = 0; i < nInputPoints; i++) {
       float data[4];
       getInputPointData(i, data);
 
@@ -508,7 +508,7 @@ int ttk::MeshGraph::execute2(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t temp = i * 3 + 1;
       size_t n0 = (size_t)inputTopology[temp++];
       size_t n1 = (size_t)inputTopology[temp];
@@ -546,7 +546,7 @@ int ttk::MeshGraph::execute2(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t q = i * 3 + 1;
       topoType in0 = inputTopology[q++] * 2;
       topoType in1 = inputTopology[q] * 2;
@@ -604,7 +604,7 @@ int ttk::MeshGraph::mapInputPointDataToOutputPointData(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputPoints; i++) {
+    for(long int i = 0; i < nInputPoints; i++) {
       size_t q = i * 3;
       // a, a0, a1
       outputPointData[q] = inputPointData[i];
@@ -618,7 +618,7 @@ int ttk::MeshGraph::mapInputPointDataToOutputPointData(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t temp = i * 3 + 1;
       size_t aInputIndex = (size_t)inputTopology[temp++];
       size_t bInputIndex = (size_t)inputTopology[temp];
@@ -654,7 +654,7 @@ int ttk::MeshGraph::mapInputPointDataToOutputPointData(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputPoints; i++) {
+    for(long int i = 0; i < nInputPoints; i++) {
       size_t offset = i * 2;
       auto &v = inputPointData[i];
       outputPointData[offset] = v;
@@ -668,7 +668,7 @@ int ttk::MeshGraph::mapInputPointDataToOutputPointData(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t q = i * 3 + 1;
       topoType c0 = inputTopology[q];
       dataType c0V = inputPointData[c0];
@@ -702,7 +702,7 @@ int ttk::MeshGraph::mapInputCellDataToOutputCellData(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       size_t offset = i * 2;
       outputCellData[offset] = inputCellData[i];
       outputCellData[offset + 1] = inputCellData[i];
@@ -711,7 +711,7 @@ int ttk::MeshGraph::mapInputCellDataToOutputCellData(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t i = 0; i < nInputCells; i++) {
+    for(long int i = 0; i < nInputCells; i++) {
       outputCellData[i] = inputCellData[i];
     }
   }

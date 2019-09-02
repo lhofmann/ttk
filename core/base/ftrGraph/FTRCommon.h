@@ -78,7 +78,7 @@ namespace ttk {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for schedule(dynamic)
 #endif
-        for(std::size_t i = 0; i < nbIt; i++) {
+        for(long int i = 0; i < nbIt; i++) {
           vect[i] = elmt;
         }
       }

@@ -147,7 +147,7 @@ int ttk::DepthImageBasedGeometryApproximation::execute(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-    for(size_t y = 0; y < camResST[1]; y += step) {
+    for(long int y = 0; y < camResST[1]; y += step) {
       double v = ((double)y) * pixelHeightWorld;
       double vTimesUp[3]
         = {v * camUpTrue[0], v * camUpTrue[1], v * camUpTrue[2]};

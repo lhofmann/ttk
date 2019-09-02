@@ -21,7 +21,7 @@ ttk::SimplexId
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < sum.size(); ++i) {
+  for(long int i = 0; i < sum.size(); ++i) {
     float m = vertexDistance_[a][i];
     float n = vertexDistance_[b][i];
     // stay on the shortest path between a and b
@@ -51,7 +51,7 @@ ttk::SimplexId ttk::QuadrangulationSubdivision::findQuadBary(
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < sum.size(); ++i) {
+  for(long int i = 0; i < sum.size(); ++i) {
 
     // skip following computation if too far from any parent quad vertex
     bool skip = std::any_of(
@@ -104,7 +104,7 @@ int ttk::QuadrangulationSubdivision::subdivise() {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < outputPoints_.size(); ++i) {
+  for(long int i = 0; i < outputPoints_.size(); ++i) {
 
     // skip if already computed on a coarser subdivision
     if(vertexDistance_[i].empty()) {
@@ -532,7 +532,7 @@ int ttk::QuadrangulationSubdivision::project(const std::set<size_t> &filtered,
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < outputPoints_.size(); i++) {
+  for(long int i = 0; i < outputPoints_.size(); i++) {
 
     // skip computation if i in filtered
     if(filtered.find(i) != filtered.end()) {
@@ -621,7 +621,7 @@ int ttk::QuadrangulationSubdivision::relax(const std::set<size_t> &filtered) {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < outputPoints_.size(); i++) {
+  for(long int i = 0; i < outputPoints_.size(); i++) {
 
     // skip computation if i in filtered
     if(filtered.find(i) != filtered.end()) {
@@ -694,7 +694,7 @@ void ttk::QuadrangulationSubdivision::quadStatistics() {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < outputQuads_.size(); ++i) {
+  for(long int i = 0; i < outputQuads_.size(); ++i) {
     const auto &q = outputQuads_[i];
     Point pi = outputPoints_[q.i];
     Point pj = outputPoints_[q.j];
@@ -752,7 +752,7 @@ void ttk::QuadrangulationSubdivision::quadStatistics() {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < static_cast<size_t>(vertexNumber_); ++i) {
+  for(long int i = 0; i < static_cast<size_t>(vertexNumber_); ++i) {
     float minDist{std::numeric_limits<float>::infinity()};
     Point p{};
     triangulation_->getVertexPoint(i, p.x, p.y, p.z);
@@ -790,7 +790,7 @@ void ttk::QuadrangulationSubdivision::quadStatistics() {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-  for(size_t i = 0; i < outputPoints_.size(); ++i) {
+  for(long int i = 0; i < outputPoints_.size(); ++i) {
     float maxDist{};
     for(size_t j = 0; j < static_cast<size_t>(vertexNumber_); ++j) {
       Point p{};

@@ -673,7 +673,7 @@ int ttk::MorseSmaleQuadrangulation::subdivise() {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-    for(size_t j = 0; j < outputDists.size(); ++j) {
+    for(long int j = 0; j < outputDists.size(); ++j) {
       Dijkstra::shortestPath(midsNearestVertex[j], *triangulation_,
                              outputDists.at(j), std::vector<SimplexId>(), mask);
     }
@@ -684,7 +684,7 @@ int ttk::MorseSmaleQuadrangulation::subdivise() {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif // TTK_ENABLE_OPENMP
-    for(size_t j = 0; j < sum.size(); ++j) {
+    for(long int j = 0; j < sum.size(); ++j) {
       // skip if vertex j not in cell i
       if(morseSeg_[j] != cellId_[i]) {
         continue;

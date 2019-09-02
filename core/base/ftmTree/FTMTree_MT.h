@@ -706,7 +706,7 @@ namespace ttk {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_) schedule(static)
 #endif
-        for(typename std::vector<type>::size_type i = 0; i < s; i++) {
+        for(long int i = 0; i < s; i++) {
           (*vect)[i] = val;
         }
       }

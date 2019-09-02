@@ -45,7 +45,7 @@ namespace ttk {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-        for(size_t i = 0; i < numberOfVertices; i++) {
+        for(long int i = 0; i < numberOfVertices; i++) {
           upperBound_[i] = inputData[i];
           lowerBound_[i] = inputData[i];
         }
@@ -53,7 +53,7 @@ namespace ttk {
 #ifdef TTK_ENABLE_OPENMP
 #pragma omp parallel for num_threads(threadNumber_)
 #endif
-        for(size_t i = 0; i < numberOfVertices; i++) {
+        for(long int i = 0; i < numberOfVertices; i++) {
           // Upper Bound
           if(inputData[i] > upperBound_[i]) {
             upperBound_[i] = inputData[i];
