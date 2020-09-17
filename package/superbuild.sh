@@ -34,6 +34,8 @@ docker run -itd \
     --volume="${cwd}/..:/mnt/shared:rw" \
     ${image}
 
+docker exec ${container} /bin/bash /mnt/shared/package/install_dependencies.sh
+
 docker exec ${container} /usr/bin/scl enable devtoolset-8 -- cmake \
     -B/tmp/superbuild \
     -H/mnt/shared/ \
@@ -45,7 +47,9 @@ docker exec ${container} /usr/bin/scl enable devtoolset-8 -- cmake \
     -DCMAKE_INSTALL_PREFIX=/tmp/package/${paraview_name} \
     -DTTK_INSTALL_PLUGIN_DIR=/tmp/package/${paraview_name}/bin/plugins \
     -DCMAKE_INSTALL_LIBDIR=lib \
-    -DMili_INCLUDE_DIR=/home/paraview/buildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuild/install/include
+    -DMili_INCLUDE_DIR=/home/paraview/buildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuildbuild/install/include \
+    -DEigen3_DIR=/tmp/eigen3/share/eigen3/cmake \
+    -DSpectra_DIR=/tmp/spectra/cmake
 
 docker exec ${container} cmake --build /tmp/superbuild --target install -- -j4
 
