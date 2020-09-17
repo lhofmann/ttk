@@ -59,11 +59,11 @@ macro(ttk_add_vtk_module)
       EXPORT
         TTKVTKTargets
       RUNTIME DESTINATION
-        bin/ttk
+        bin
       ARCHIVE DESTINATION
-        lib/ttk
+        lib
       LIBRARY DESTINATION
-        lib/ttk
+        lib
       )
   endif()
 
