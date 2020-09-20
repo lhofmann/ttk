@@ -120,6 +120,7 @@
                 Please update your state file to use ttkDepthImageBasedGeometryApproximation instead of DepthImageBasedGeometryApproximation.
             </Deprecated>
         </SourceProxy>
+<!--
         <SourceProxy
             base_proxygroup="filters"
             base_proxyname="ttkDimensionReduction"
@@ -130,6 +131,7 @@
                 Please update your state file to use ttkDimensionReduction instead of DimensionReduction.
             </Deprecated>
         </SourceProxy>
+-->
         <SourceProxy
             base_proxygroup="filters"
             base_proxyname="ttkDiscreteGradient"
